@@ -112,10 +112,10 @@
   mask-size: 150%;
   mask-position: top calc(200% - (var(--background-y) * 5)) left calc(100% - var(--background-x));
   transition: filter 0.8s ease;
-  filter: brightness(0.66) contrast(1.33) saturate(0.33) opacity(0.5);
+  filter: brightness(0.3) contrast(1.2) saturate(0.2) opacity(0.25);
   animation: holo-bg 18s linear infinite;
   animation-play-state: running;
-  mix-blend-mode: color-dodge;
+  mix-blend-mode: overlay;
 }
 
 .pc-shine,
@@ -178,7 +178,7 @@
 
 .pc-card:hover .pc-shine,
 .pc-card.active .pc-shine {
-  filter: brightness(0.85) contrast(1.5) saturate(0.5);
+  filter: brightness(0.4) contrast(1.3) saturate(0.3) opacity(0.35);
   animation-play-state: paused;
 }
 
@@ -186,7 +186,7 @@
 .pc-card.active .pc-shine::before,
 .pc-card:hover .pc-shine::after,
 .pc-card.active .pc-shine::after {
-  opacity: 1;
+  opacity: 0.4;
 }
 
 .pc-shine::before {
@@ -210,10 +210,10 @@
     var(--pointer-x) var(--pointer-y),
     center,
     calc(var(--pointer-x) * 0.01) calc(var(--pointer-y) * 0.01);
-  background-blend-mode: color-dodge;
-  filter: brightness(calc(2 - var(--pointer-from-center))) contrast(calc(var(--pointer-from-center) + 2))
-    saturate(calc(0.5 + var(--pointer-from-center)));
-  mix-blend-mode: luminosity;
+  background-blend-mode: overlay;
+  filter: brightness(calc(1.2 - var(--pointer-from-center) * 0.3)) contrast(calc(1 + var(--pointer-from-center) * 0.3))
+    saturate(calc(0.3 + var(--pointer-from-center) * 0.2));
+  mix-blend-mode: overlay;
 }
 
 .pc-shine::after {
@@ -234,16 +234,15 @@
   overflow: hidden;
   background-image: radial-gradient(
     farthest-corner circle at var(--pointer-x) var(--pointer-y),
-    hsl(210, 50%, 80%) 12%,
-    hsla(210, 40%, 30%, 0.8) 90%
+    hsla(210, 50%, 80%, 0.15) 12%,
+    hsla(210, 40%, 30%, 0.1) 90%
   );
   mix-blend-mode: overlay;
-  filter: brightness(0.8) contrast(1.2);
+  filter: brightness(0.9) contrast(1.1);
   z-index: 4;
 }
 
 .pc-avatar-content {
-  mix-blend-mode: luminosity;
   overflow: visible;
   transform: translateZ(2);
   backface-visibility: hidden;
@@ -258,6 +257,7 @@
     scaleY(calc(1 + (var(--pointer-from-top) - 0.5) * 0.02)) scaleX(calc(1 + (var(--pointer-from-left) - 0.5) * 0.01));
   bottom: -1px;
   backface-visibility: hidden;
+  filter: grayscale(0.3) contrast(1.1);
   will-change: transform;
   transition: transform 120ms ease-out;
 }
