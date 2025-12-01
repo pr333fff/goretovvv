@@ -81,9 +81,9 @@ export function Contact() {
             Открыт к новым проектам
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Обсудим ваш проект?
+            <span className="gradient-text-purple">Обсудим ваш проект?</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Бесплатная консультация — <span className="text-foreground font-medium">расскажу, как автоматизировать именно ваш бизнес</span>
           </p>
         </motion.div>

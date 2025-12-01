@@ -18,7 +18,6 @@ import {
   type LucideIcon
 } from "lucide-react";
 import ProfileCard from "@/components/ProfileCard";
-import DecryptedText from "@/components/ui/DecryptedText";
 
 const skills = [
   { name: "TypeScript", icon: Code2 },
@@ -68,22 +67,14 @@ export function About() {
           {...fadeInUp}
           className="text-center mb-12 will-change-transform"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4 border border-primary/20 backdrop-blur-sm">
             <Zap className="w-4 h-4" />
             О разработчике
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <DecryptedText 
-              text="Почему выбирают меня?"
-              animateOn="view"
-              speed={40}
-              maxIterations={15}
-              revealDirection="center"
-              className="text-foreground"
-              encryptedClassName="text-primary/60"
-            />
+            <span className="gradient-text-blue">Почему выбирают меня?</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             3+ года превращаю идеи в работающие решения для бизнеса
           </p>
         </motion.div>

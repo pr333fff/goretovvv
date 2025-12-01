@@ -148,7 +148,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
           >
-            <span className="block">Ваш бизнес на автопилоте</span>
+            <span className="block gradient-text">Ваш бизнес на автопилоте</span>
             <span className="block mt-2">
               <span className="text-muted-foreground">с </span>
               <span className="relative inline-block min-w-[200px] sm:min-w-[280px] md:min-w-[340px] text-left sm:text-center">
@@ -184,14 +184,13 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button asChild size="lg" className="w-full sm:w-auto relative overflow-hidden group bg-gradient-to-r from-primary to-primary/80 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
+            <Button asChild size="lg" className="w-full sm:w-auto btn-gradient text-white font-semibold px-8 py-6 text-lg rounded-xl">
               <Link href="#projects">
-                <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                <Bot className="w-5 h-5 mr-2 relative z-10" />
-                <span className="relative z-10">Посмотреть решения</span>
+                <Bot className="w-5 h-5 mr-2" />
+                Посмотреть решения
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto group hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
+            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto group hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 px-8 py-6 text-lg rounded-xl border-2">
               <Link href="#contact">
                 <Send className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
                 Бесплатная консультация

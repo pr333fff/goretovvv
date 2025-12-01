@@ -31,14 +31,14 @@ export function Projects() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-600 text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-600 text-sm font-medium mb-4 border border-amber-500/20 backdrop-blur-sm">
             <Rocket className="w-4 h-4" />
             Мои проекты
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Боты, которые <span className="text-primary">работают прямо сейчас</span>
+            <span className="gradient-text">Боты, которые работают</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Можете протестировать — нажмите на карточку и откройте бота
           </p>
         </motion.div>
@@ -63,13 +63,13 @@ export function Projects() {
         />
 
         {/* Divider */}
-        <div className="relative my-16">
+        <div className="relative my-20">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-border" />
+            <div className="w-full border-t border-border/50" />
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-background px-4 text-muted-foreground text-sm">
-              Примеры решений для вашего бизнеса
+            <span className="bg-background px-6 py-2 text-muted-foreground text-sm rounded-full border border-border/50">
+              Могу разработать для вас
             </span>
           </div>
         </div>
@@ -82,14 +82,14 @@ export function Projects() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4 border border-primary/20 backdrop-blur-sm">
             <Sparkles className="w-4 h-4" />
             Портфолио
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Решения под ваши задачи
+            <span className="gradient-text-blue">Решения под ваши задачи</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Каждый проект можно адаптировать под ваш бизнес за 3-7 дней
           </p>
         </motion.div>
@@ -100,7 +100,7 @@ export function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-2 mb-10"
+          className="flex flex-wrap justify-center gap-3 mb-12"
         >
           {categories.map((category) => (
             <Button
@@ -108,7 +108,7 @@ export function Projects() {
               variant={activeCategory === category.id ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveCategory(category.id)}
-              className="transition-all"
+              className={`transition-all duration-300 ${activeCategory === category.id ? 'btn-gradient text-white shadow-lg shadow-primary/25' : 'hover:border-primary/50'}`}
             >
               {category.label}
             </Button>
