@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
 
 interface PastWork {
   id: string;
@@ -69,6 +70,26 @@ const pastWorks: PastWork[] = [
 const duplicatedWorks = [...pastWorks, ...pastWorks];
 
 export function PastWorks() {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isTouching, setIsTouching] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Touch handlers для мобильных
+  const handleTouchStart = () => {
+    setIsTouching(true);
+  };
+
+  const handleTouchEnd = () => {
+    setIsTouching(false);
+  };
+
   return (
     <div className="relative my-20">
       {/* Header */}
@@ -100,12 +121,23 @@ export function PastWorks() {
         className="relative overflow-hidden"
       >
         {/* Gradient edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-        {/* Infinite carousel */}
-        <div className="flex animate-carousel hover:[animation-play-state:paused]">
-          {duplicatedWorks.map((work, index) => (
+        {/* Infinite carousel - scrollable on mobile, auto-scroll on desktop */}
+        <div 
+          ref={carouselRef}
+          className={`flex ${isMobile ? 'overflow-x-auto scrollbar-hide' : 'overflow-hidden'}`}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          style={{ 
+            scrollbarWidth: 'none', 
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          <div className={`flex ${!isMobile ? 'animate-carousel' : ''} ${isTouching ? '[animation-play-state:paused]' : ''} hover:[animation-play-state:paused]`}>
+            {duplicatedWorks.map((work, index) => (
             <div
               key={`${work.id}-${index}`}
               className="flex-shrink-0 px-2 group"
@@ -132,13 +164,13 @@ export function PastWorks() {
                   <p className="text-white/70 text-xs">{work.description}</p>
                 </div>
                 
-                {/* Category badge (always visible) */}
                 <div className="absolute top-3 left-3 px-2 py-1 text-[10px] font-medium bg-black/50 backdrop-blur-sm text-white rounded-full group-hover:opacity-0 transition-opacity duration-300">
                   {work.category}
                 </div>
               </div>
             </div>
           ))}
+          </div>
         </div>
       </motion.div>
 
