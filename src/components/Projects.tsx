@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, categories, Project } from "@/data/projects";
+import { featuredProjects } from "@/data/featuredProjects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectModal } from "@/components/ProjectModal";
+import { FeaturedProject } from "@/components/FeaturedProject";
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Rocket } from "lucide-react";
 
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -19,7 +21,46 @@ export function Projects() {
   return (
     <section id="projects" className="py-20 md:py-32">
       <div className="container mx-auto px-4">
-        {/* Header */}
+        {/* Featured Projects Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-600 text-sm font-medium mb-4">
+            <Rocket className="w-4 h-4" />
+            Мои проекты
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Работающие боты
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Реальные проекты, которые я разработал и поддерживаю. Можете протестировать прямо сейчас!
+          </p>
+        </motion.div>
+
+        {/* Featured Projects Grid */}
+        <div className="grid md:grid-cols-2 gap-6 mb-20 max-w-4xl mx-auto">
+          {featuredProjects.map((project, index) => (
+            <FeaturedProject key={project.id} project={project} index={index} />
+          ))}
+        </div>
+
+        {/* Divider */}
+        <div className="relative my-16">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-border" />
+          </div>
+          <div className="relative flex justify-center">
+            <span className="bg-background px-4 text-muted-foreground text-sm">
+              Примеры решений для вашего бизнеса
+            </span>
+          </div>
+        </div>
+
+        {/* Other Projects Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +77,6 @@ export function Projects() {
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Примеры проектов, которые можно адаптировать под ваши задачи
-            или взять за основу для нового бота
           </p>
         </motion.div>
 
