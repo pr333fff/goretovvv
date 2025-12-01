@@ -1,29 +1,34 @@
-import { Bot, Zap } from "lucide-react";
+import { Bot, Zap, Sparkles } from "lucide-react";
 import { FeaturedProjectData } from "@/components/FeaturedProject";
 
 export const featuredProjects: FeaturedProjectData[] = [
   {
-    id: "bot-1",
-    title: "Бот #1",
-    description: "Опишите вашего первого бота: что он делает, какую проблему решает.",
-    fullDescription: "Подробное описание первого бота. Здесь можно рассказать о всех возможностях, технологиях и преимуществах использования. Добавьте информацию о том, как бот помогает пользователям решать их задачи.",
+    id: "astro-tarot-bot",
+    title: "Астро Таро Бот",
+    description: "AI-астролог с раскладами Таро, гороскопами и красивым Mini App интерфейсом",
+    fullDescription: "Астрологический Telegram-бот нового поколения с интеграцией ChatGPT-4 для глубокой трактовки раскладов Таро. Бот умеет делать различные расклады на картах Таро с AI-интерпретацией. Разработано стильное Mini App с интуитивным интерфейсом для подробных раскладов и ежедневных гороскопов. Монетизация через Robokassa — подписки и разовые покупки. Админ-панель для отслеживания метрик: пользователи, платежи, популярные расклады.",
     features: [
-      "Функция 1",
-      "Функция 2",
-      "Функция 3",
-      "Функция 4",
+      "Расклады Таро с AI-трактовкой",
+      "Интеграция ChatGPT-4 API",
+      "Mini App с красивым UI",
+      "Ежедневные гороскопы",
+      "Оплата через Robokassa",
+      "Админ-панель с метриками",
     ],
     screenshots: [
-      // Добавьте скриншоты сюда: "/screenshots/bot1-1.png", "/screenshots/bot1-2.png"
+      "/screenshots/proj1.jpeg",
+      "/screenshots/proj2.jpeg",
+      "/screenshots/proj3.jpeg",
+      "/screenshots/proj4.jpeg",
     ],
     stats: {
-      users: "1K+",
-      messages: "50K+",
+      users: "2K+",
+      messages: "100K+",
       rating: "4.9",
     },
-    gradient: "from-blue-500, to-cyan-400",
-    icon: Bot,
-    telegramUrl: "https://t.me/your_bot_1",
+    gradient: "from-violet-600, to-purple-400",
+    icon: Sparkles,
+    telegramUrl: "https://t.me/astro_tarot_bot",
     demoAvailable: true,
   },
   {
