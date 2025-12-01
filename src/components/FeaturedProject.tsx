@@ -10,7 +10,8 @@ import {
   MessageSquare, 
   Star,
   Sparkles,
-  Bot
+  Bot,
+  LucideIcon
 } from "lucide-react";
 import Link from "next/link";
 
@@ -26,7 +27,8 @@ export interface FeaturedProjectData {
     rating?: string;
   };
   gradient: string;
-  icon?: React.ReactNode;
+  icon?: LucideIcon;
+  demoAvailable?: boolean;
 }
 
 interface FeaturedProjectProps {
@@ -35,6 +37,8 @@ interface FeaturedProjectProps {
 }
 
 export function FeaturedProject({ project, index }: FeaturedProjectProps) {
+  const IconComponent = project.icon || Bot;
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -70,7 +74,7 @@ export function FeaturedProject({ project, index }: FeaturedProjectProps) {
                 className="p-3 rounded-xl"
                 style={{ background: `${project.gradient.split(',')[1]?.trim() || '#3b82f6'}20` }}
               >
-                {project.icon || <Bot className="w-6 h-6 text-primary" />}
+                <IconComponent className="w-6 h-6 text-primary" />
               </div>
               <div>
                 <h3 className="text-xl font-bold">{project.title}</h3>
