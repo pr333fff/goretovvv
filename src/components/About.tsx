@@ -1,12 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { 
-  Send, 
-  Github, 
-  Mail, 
   Code2, 
   Bot, 
   Workflow, 
@@ -14,7 +10,7 @@ import {
   Server,
   Database
 } from "lucide-react";
-import Link from "next/link";
+import ProfileCard from "@/components/ProfileCard";
 
 const skills = [
   { name: "TypeScript", icon: Code2 },
@@ -25,22 +21,42 @@ const skills = [
   { name: "Автоматизации", icon: Workflow },
 ];
 
-const socialLinks = [
-  { href: "https://t.me/goretov", icon: Send, label: "Telegram" },
-  { href: "https://github.com/goretov", icon: Github, label: "GitHub" },
-  { href: "mailto:hello@goretov.dev", icon: Mail, label: "Email" },
-];
+// Оптимизированные варианты анимаций для GPU-ускорения
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.3 },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
+};
+
+const fadeInLeft = {
+  initial: { opacity: 0, x: -30 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true, amount: 0.3 },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay: 0.1 }
+};
+
+const fadeInRight = {
+  initial: { opacity: 0, x: 30 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true, amount: 0.3 },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 }
+};
 
 export function About() {
+  const handleContactClick = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="about" className="py-20 md:py-32 bg-muted/50">
+    <section id="about" className="py-20 md:py-32 bg-muted/50 overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          {...fadeInUp}
+          className="text-center mb-12 will-change-transform"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Обо мне</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -48,53 +64,32 @@ export function About() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-          {/* Avatar and social */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          {/* Profile Card */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-col items-center lg:items-start gap-6"
+            {...fadeInLeft}
+            className="flex justify-center will-change-transform"
           >
-            <Avatar className="w-32 h-32 md:w-40 md:h-40 ring-4 ring-primary/20">
-              <AvatarImage src="/avatar.jpg" alt="GORETOV" />
-              <AvatarFallback className="text-4xl bg-primary text-primary-foreground">
-                G
-              </AvatarFallback>
-            </Avatar>
-
-            <div className="text-center lg:text-left">
-              <h3 className="text-2xl font-bold mb-2">GORETOV</h3>
-              <p className="text-muted-foreground mb-4">
-                Telegram Bot Developer & Automation Specialist
-              </p>
-              
-              {/* Social links */}
-              <div className="flex gap-3 justify-center lg:justify-start">
-                {socialLinks.map(({ href, icon: Icon, label }) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-background hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm"
-                    aria-label={label}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </Link>
-                ))}
-              </div>
-            </div>
+            <ProfileCard
+              name="GORETOV"
+              title="Telegram Bot Developer"
+              handle="goretov"
+              status="Доступен для проектов"
+              contactText="Связаться"
+              avatarUrl="/avatar.jpg"
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={false}
+              onContactClick={handleContactClick}
+              behindGlowColor="rgba(59, 130, 246, 0.4)"
+              innerGradient="linear-gradient(145deg, rgba(59, 130, 246, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%)"
+            />
           </motion.div>
 
           {/* Description and skills */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-6"
+            {...fadeInRight}
+            className="space-y-6 will-change-transform"
           >
             <div className="prose prose-gray dark:prose-invert max-w-none">
               <p className="text-lg leading-relaxed">
