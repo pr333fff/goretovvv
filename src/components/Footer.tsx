@@ -33,14 +33,14 @@ export function Footer() {
         <div className="container mx-auto px-4 py-16">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
             <div>
-              <h3 className="text-2xl md:text-4xl font-bold mb-3 gradient-text">
-                Готовы автоматизировать бизнес?
+              <h3 className="text-2xl md:text-4xl font-bold mb-3">
+                Готовы автоматизировать <span className="text-primary">бизнес?</span>
               </h3>
               <p className="text-background/70 text-lg">
                 Первая консультация бесплатно. Ответ — за 15 минут.
               </p>
             </div>
-            <Button asChild size="lg" className="btn-gradient text-white font-semibold px-8 py-6 text-lg rounded-xl">
+            <Button asChild size="lg" className="btn-primary font-semibold px-8 py-6 text-lg rounded-xl">
               <Link href="#contact">
                 Обсудить проект
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -95,7 +95,7 @@ export function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-background/10 hover:bg-gradient-to-r hover:from-primary hover:to-accent text-background transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
+                  className="p-3 rounded-xl bg-background/10 hover:bg-primary text-background transition-all duration-300 hover:scale-105"
                   aria-label={label}
                 >
                   <Icon className="w-5 h-5" />

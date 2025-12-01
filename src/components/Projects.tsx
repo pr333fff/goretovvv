@@ -36,7 +36,7 @@ export function Projects() {
             Мои проекты
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="gradient-text">Боты, которые работают</span>
+            Боты, которые <span className="text-primary">работают</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Можете протестировать — нажмите на карточку и откройте бота
@@ -87,7 +87,7 @@ export function Projects() {
             Портфолио
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="gradient-text-blue">Решения под ваши задачи</span>
+            Решения под <span className="text-primary">ваши задачи</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Каждый проект можно адаптировать под ваш бизнес за 3-7 дней
@@ -108,7 +108,7 @@ export function Projects() {
               variant={activeCategory === category.id ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveCategory(category.id)}
-              className={`transition-all duration-300 ${activeCategory === category.id ? 'btn-gradient text-white shadow-lg shadow-primary/25' : 'hover:border-primary/50'}`}
+              className={`transition-all duration-300 ${activeCategory === category.id ? 'bg-primary text-white' : 'hover:border-primary/50'}`}
             >
               {category.label}
             </Button>

@@ -41,7 +41,8 @@ const advantages = [
     value: "3-5",
     unit: "дней",
     desc: "MVP готов к запуску",
-    gradient: "from-amber-500 to-orange-500"
+    color: "text-amber-500",
+    bg: "bg-amber-500/10"
   },
   { 
     Icon: Shield, 
@@ -49,7 +50,8 @@ const advantages = [
     value: "30",
     unit: "дней",
     desc: "Бесплатная поддержка",
-    gradient: "from-green-500 to-emerald-500"
+    color: "text-green-500",
+    bg: "bg-green-500/10"
   },
   { 
     Icon: HeadphonesIcon, 
@@ -57,7 +59,8 @@ const advantages = [
     value: "24/7",
     unit: "",
     desc: "На связи в Telegram",
-    gradient: "from-blue-500 to-cyan-500"
+    color: "text-primary",
+    bg: "bg-primary/10"
   },
   { 
     Icon: Target, 
@@ -65,7 +68,8 @@ const advantages = [
     value: "100",
     unit: "%",
     desc: "Довольных клиентов",
-    gradient: "from-violet-500 to-purple-500"
+    color: "text-violet-500",
+    bg: "bg-violet-500/10"
   },
 ];
 
@@ -117,7 +121,7 @@ export function About() {
             О разработчике
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="gradient-text-blue">Почему выбирают меня?</span>
+            Почему выбирают <span className="text-primary">меня?</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg md:text-xl">
             3+ года превращаю идеи в работающие решения для бизнеса
@@ -139,40 +143,29 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative p-6 md:p-8 rounded-2xl bg-card/80 backdrop-blur-md border border-border/50 hover:border-transparent transition-all duration-500 overflow-hidden"
+              whileHover={{ y: -4 }}
+              className="group p-6 md:p-8 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-300"
             >
-              {/* Gradient border on hover */}
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-[1px]`}>
-                <div className="w-full h-full rounded-2xl bg-card" />
+              {/* Icon */}
+              <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl ${item.bg} flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300`}>
+                <item.Icon className={`w-6 h-6 md:w-7 md:h-7 ${item.color}`} />
               </div>
               
-              {/* Glow effect */}
-              <div className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
-              
-              {/* Content */}
-              <div className="relative z-10">
-                {/* Icon */}
-                <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}>
-                  <item.Icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
-                </div>
-                
-                {/* Value */}
-                <div className="flex items-baseline gap-1 mb-1">
-                  <span className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>
-                    {item.value}
+              {/* Value */}
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className={`text-3xl md:text-4xl font-bold ${item.color}`}>
+                  {item.value}
+                </span>
+                {item.unit && (
+                  <span className="text-lg md:text-xl font-semibold text-muted-foreground">
+                    {item.unit}
                   </span>
-                  {item.unit && (
-                    <span className="text-lg md:text-xl font-semibold text-muted-foreground">
-                      {item.unit}
-                    </span>
-                  )}
-                </div>
-                
-                {/* Title & Description */}
-                <div className="font-semibold text-foreground mb-1">{item.title}</div>
-                <div className="text-sm text-muted-foreground">{item.desc}</div>
+                )}
               </div>
+              
+              {/* Title & Description */}
+              <div className="font-semibold text-foreground mb-1">{item.title}</div>
+              <div className="text-sm text-muted-foreground">{item.desc}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -209,7 +202,7 @@ export function About() {
           >
             <div className="space-y-6">
               <p className="text-xl leading-relaxed">
-                <span className="gradient-text font-semibold">50+ проектов</span> для бизнесов от кофеен до онлайн-школ. 
+                <span className="text-primary font-semibold">50+ проектов</span> для бизнесов от кофеен до онлайн-школ. 
                 Каждый бот — это не просто код, а <strong className="text-foreground">инструмент роста</strong> вашего дела.
               </p>
               
@@ -228,7 +221,7 @@ export function About() {
                     transition={{ delay: i * 0.1 }}
                     className="flex items-center gap-4 p-3 rounded-xl hover:bg-card/50 transition-colors"
                   >
-                    <span className="text-2xl font-bold gradient-text-blue">{step.num}</span>
+                    <span className="text-2xl font-bold text-primary">{step.num}</span>
                     <span className="text-muted-foreground">{step.text}</span>
                   </motion.div>
                 ))}

@@ -148,11 +148,11 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
           >
-            <span className="block gradient-text">Ваш бизнес на автопилоте</span>
+            <span className="block">Ваш бизнес на автопилоте</span>
             <span className="block mt-2">
               <span className="text-muted-foreground">с </span>
               <span className="relative inline-block min-w-[200px] sm:min-w-[280px] md:min-w-[340px] text-left sm:text-center">
-                <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+                <span className="text-primary">
                   {typedText}
                 </span>
                 <motion.span
@@ -184,7 +184,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button asChild size="lg" className="w-full sm:w-auto btn-gradient text-white font-semibold px-8 py-6 text-lg rounded-xl">
+            <Button asChild size="lg" className="w-full sm:w-auto btn-primary font-semibold px-8 py-6 text-lg rounded-xl">
               <Link href="#projects">
                 <Bot className="w-5 h-5 mr-2" />
                 Посмотреть решения
@@ -212,19 +212,15 @@ export function Hero() {
             ].map((stat, index) => (
               <motion.div 
                 key={index} 
-                className="text-center p-4 md:p-6 rounded-2xl bg-card/80 backdrop-blur-md border border-border/50 group cursor-default hover:border-primary/50 transition-all duration-500 relative overflow-hidden"
-                whileHover={{ scale: 1.03, y: -4 }}
+                className="text-center p-4 md:p-6 rounded-2xl bg-card/80 backdrop-blur-md border border-border/50 group cursor-default hover:border-primary/50 transition-all duration-300"
+                whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {/* Hover glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                {/* Shine effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0.2)_50%,transparent_55%)] bg-[length:200%_100%] animate-[shine_1.5s_ease-in-out]" />
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent relative z-10">
+                <div className="text-3xl md:text-4xl font-bold text-primary">
                   {stat.value}
                 </div>
-                <div className="text-sm font-medium text-foreground relative z-10">{stat.label}</div>
-                <div className="text-xs text-muted-foreground relative z-10">{stat.sublabel}</div>
+                <div className="text-sm font-medium text-foreground">{stat.label}</div>
+                <div className="text-xs text-muted-foreground">{stat.sublabel}</div>
               </motion.div>
             ))}
           </motion.div>

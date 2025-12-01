@@ -152,86 +152,53 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Gradient Text - Premium Effect */
-.gradient-text {
-  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-size: 200% auto;
-  animation: gradient-text-shift 4s ease infinite;
+/* Clean accent text */
+.accent-text {
+  color: #3B82F6;
 }
 
-.gradient-text-blue {
-  background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 50%, #10B981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.accent-text-cyan {
+  color: #06B6D4;
 }
 
-.gradient-text-purple {
-  background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 50%, #D946EF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.accent-text-violet {
+  color: #8B5CF6;
 }
 
-@keyframes gradient-text-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Premium Button Styles */
-.btn-gradient {
-  @apply relative overflow-hidden;
-  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #3B82F6 100%);
-  background-size: 200% auto;
+/* Premium Button Styles - Clean */
+.btn-primary {
+  @apply relative overflow-hidden bg-primary text-white;
   transition: all 0.3s ease;
 }
 
-.btn-gradient:hover {
-  background-position: right center;
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(59, 130, 246, 0.3);
+.btn-primary:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
   transform: translateY(-2px);
 }
 
-.btn-gradient::before {
+.btn-primary::before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
   transition: left 0.5s ease;
 }
 
-.btn-gradient:hover::before {
+.btn-primary:hover::before {
   left: 100%;
 }
 
-/* Premium Card Hover */
+/* Clean Card Hover */
 .card-premium {
-  @apply relative overflow-hidden transition-all duration-500;
-}
-
-.card-premium::before {
-  content: '';
-  @apply absolute inset-0 opacity-0 transition-opacity duration-500;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-}
-
-.card-premium:hover::before {
-  @apply opacity-100;
+  @apply relative overflow-hidden transition-all duration-300;
 }
 
 .card-premium:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 /* Градиентная анимация */
