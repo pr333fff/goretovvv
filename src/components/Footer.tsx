@@ -49,15 +49,15 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-4 mb-4">
+            <Link href="/" className="flex items-center gap-2 mb-4">
               <Image
                 src="/LOGO.png"
                 alt="GORETOV Logo"
-                width={64}
-                height={64}
-                className="rounded-xl"
+                width={120}
+                height={120}
+                className="rounded-2xl"
               />
-              <span className="font-bold text-xl">GORETOV</span>
+              <span className="font-bold text-2xl">GORETOV</span>
             </Link>
             <p className="text-background/70 text-sm max-w-xs">
               Разработка Telegram-ботов, mini-apps и автоматизаций для бизнеса
