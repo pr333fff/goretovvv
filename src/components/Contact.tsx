@@ -35,7 +35,10 @@ export function Contact() {
         },
         body: JSON.stringify({
           name: formData.get("name"),
+          telegram: formData.get("telegram"),
+          whatsapp: formData.get("whatsapp"),
           email: formData.get("email"),
+          budget: formData.get("budget"),
           message: formData.get("message"),
         }),
       });
@@ -104,19 +107,67 @@ export function Contact() {
                       placeholder="Ваше имя"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-1.5">
-                      Email
+                  
+                  {/* Contact options */}
+                  <div className="space-y-3">
+                    <label className="block text-sm font-medium">
+                      Как с вами связаться?
                     </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
+                    <div className="grid gap-3">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-muted-foreground w-20">Telegram</span>
+                        <input
+                          type="text"
+                          id="telegram"
+                          name="telegram"
+                          className="flex-1 px-4 py-2.5 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                          placeholder="@username"
+                        />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-muted-foreground w-20">WhatsApp</span>
+                        <input
+                          type="tel"
+                          id="whatsapp"
+                          name="whatsapp"
+                          className="flex-1 px-4 py-2.5 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                          placeholder="+7 999 123-45-67"
+                        />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-muted-foreground w-20">Email</span>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          className="flex-1 px-4 py-2.5 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                    </div>
+                    <p className="text-xs text-muted-foreground">Укажите хотя бы один способ связи</p>
+                  </div>
+
+                  {/* Budget */}
+                  <div>
+                    <label htmlFor="budget" className="block text-sm font-medium mb-1.5">
+                      Бюджет проекта
+                    </label>
+                    <select
+                      id="budget"
+                      name="budget"
                       required
                       className="w-full px-4 py-2.5 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
-                      placeholder="your@email.com"
-                    />
+                    >
+                      <option value="">Выберите бюджет</option>
+                      <option value="3000-5000">3 000 — 5 000 ₽</option>
+                      <option value="5000-10000">5 000 — 10 000 ₽</option>
+                      <option value="10000-20000">10 000 — 20 000 ₽</option>
+                      <option value="20000-50000">20 000 — 50 000 ₽</option>
+                      <option value="50000+">от 50 000 ₽</option>
+                    </select>
                   </div>
+
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium mb-1.5">
                       Описание проекта
