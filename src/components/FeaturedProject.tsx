@@ -82,7 +82,7 @@ export function FeaturedProject({ project, index, onClick }: FeaturedProjectProp
                 src={project.previewImage}
                 alt={`${project.title} preview`}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover scale-[1.2] transition-transform duration-700 group-hover:scale-[1.25]"
               />
               {/* Gradient overlay */}
               <div className={`absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent`} />
