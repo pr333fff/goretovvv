@@ -8,7 +8,9 @@ import {
   Workflow, 
   Zap,
   Server,
-  Database
+  Database,
+  Sparkles,
+  Link
 } from "lucide-react";
 import ProfileCard from "@/components/ProfileCard";
 
@@ -17,6 +19,8 @@ const skills = [
   { name: "Node.js", icon: Server },
   { name: "Python", icon: Code2 },
   { name: "Telegram API", icon: Bot },
+  { name: "OpenAI API", icon: Sparkles },
+  { name: "API интеграции", icon: Link },
   { name: "PostgreSQL", icon: Database },
   { name: "Автоматизации", icon: Workflow },
 ];

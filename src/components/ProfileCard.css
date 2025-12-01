@@ -259,14 +259,13 @@
     scaleY(calc(1 + (var(--pointer-from-top) - 0.5) * 0.02)) scaleX(calc(1 + (var(--pointer-from-left) - 0.5) * 0.01));
   bottom: -1px;
   backface-visibility: hidden;
-  filter: grayscale(0.1) contrast(1.05) sepia(0.05) saturate(1.1) hue-rotate(180deg) brightness(0.95);
-  will-change: transform, filter;
-  transition: transform 120ms ease-out, filter 0.4s ease;
+  will-change: transform;
+  transition: transform 120ms ease-out;
 }
 
 .pc-card:hover .pc-avatar-content .avatar,
 .pc-card.active .pc-avatar-content .avatar {
-  filter: grayscale(0.08) contrast(1.08) sepia(0.08) saturate(1.15) hue-rotate(190deg) brightness(0.92);
+  /* no filter on hover */
 }
 
 .pc-avatar-content::before {
