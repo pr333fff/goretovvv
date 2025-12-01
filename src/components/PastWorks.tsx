@@ -57,6 +57,13 @@ const pastWorks: PastWork[] = [
     image: "/works/work6.jpeg",
     category: "Маркетинг"
   },
+  {
+    id: "work7",
+    title: "Автоворонка",
+    description: "Автоматизация продаж",
+    image: "/works/work7.jpeg",
+    category: "Продажи"
+  },
 ];
 
 export function PastWorks() {
