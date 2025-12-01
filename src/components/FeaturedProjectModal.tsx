@@ -247,7 +247,7 @@ export function FeaturedProjectModal({ project, isOpen, onClose }: FeaturedProje
                   <Button 
                     asChild 
                     size="lg"
-                    className={`w-full text-white bg-gradient-to-r ${project.gradient} hover:opacity-90 transition-opacity shadow-lg`}
+                    className={`group relative w-full text-white bg-gradient-to-r ${project.gradient} hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 shadow-lg overflow-hidden`}
                   >
                     <Link 
                       href={project.telegramUrl} 
@@ -255,8 +255,12 @@ export function FeaturedProjectModal({ project, isOpen, onClose }: FeaturedProje
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2"
                     >
-                      Открыть в Telegram
-                      <ExternalLink className="w-4 h-4" />
+                      {/* Shine effect */}
+                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                      <span className="relative flex items-center gap-2">
+                        Открыть в Telegram
+                        <ExternalLink className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
+                      </span>
                     </Link>
                   </Button>
                 </div>
