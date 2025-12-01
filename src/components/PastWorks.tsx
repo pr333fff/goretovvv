@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
+import { Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 
@@ -72,23 +72,24 @@ const duplicatedWorks = [...pastWorks, ...pastWorks];
 export function PastWorks() {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isTouching, setIsTouching] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const [showSwipeHint, setShowSwipeHint] = useState(true);
 
-  // Touch handlers для мобильных
+  // Touch handlers
   const handleTouchStart = () => {
     setIsTouching(true);
+    setShowSwipeHint(false); // Скрываем подсказку после первого касания
   };
 
   const handleTouchEnd = () => {
-    setIsTouching(false);
+    // Задержка перед возобновлением анимации
+    setTimeout(() => setIsTouching(false), 2000);
   };
+
+  // Скрываем подсказку через 5 секунд
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSwipeHint(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="relative my-20">
@@ -124,10 +125,26 @@ export function PastWorks() {
         <div className="absolute left-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-        {/* Infinite carousel - scrollable on mobile, auto-scroll on desktop */}
+        {/* Swipe hint for mobile */}
+        {showSwipeHint && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none md:hidden"
+          >
+            <div className="flex items-center gap-2 px-4 py-2 bg-black/70 backdrop-blur-sm rounded-full text-white text-sm">
+              <ChevronLeft className="w-4 h-4 animate-pulse" />
+              <span>Свайпайте</span>
+              <ChevronRight className="w-4 h-4 animate-pulse" />
+            </div>
+          </motion.div>
+        )}
+
+        {/* Infinite carousel - touch to pause, auto-scroll always */}
         <div 
           ref={carouselRef}
-          className={`flex ${isMobile ? 'overflow-x-auto scrollbar-hide' : 'overflow-hidden'}`}
+          className="overflow-x-auto scrollbar-hide"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           style={{ 
@@ -136,7 +153,7 @@ export function PastWorks() {
             WebkitOverflowScrolling: 'touch'
           }}
         >
-          <div className={`flex ${!isMobile ? 'animate-carousel' : ''} ${isTouching ? '[animation-play-state:paused]' : ''} hover:[animation-play-state:paused]`}>
+          <div className={`flex animate-carousel ${isTouching ? '[animation-play-state:paused]' : ''} hover:[animation-play-state:paused]`}>
             {duplicatedWorks.map((work, index) => (
             <div
               key={`${work.id}-${index}`}
