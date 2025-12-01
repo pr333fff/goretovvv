@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Bot, Zap, Send, Github, Mail, Heart, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { Send, Github, Mail, Heart, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const footerLinks = {
@@ -48,11 +49,14 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="relative">
-                <Bot className="w-8 h-8 text-primary" />
-                <Zap className="w-4 h-4 text-accent absolute -right-1 -top-1" />
-              </div>
+            <Link href="/" className="flex items-center gap-3 mb-4">
+              <Image
+                src="/LOGO.png"
+                alt="GORETOV Logo"
+                width={40}
+                height={40}
+                className="rounded-lg"
+              />
               <span className="font-bold text-xl">GORETOV</span>
             </Link>
             <p className="text-background/70 text-sm max-w-xs">

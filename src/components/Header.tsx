@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, Zap } from "lucide-react";
+import Image from "next/image";
 import PillNav from "@/components/ui/PillNav";
 
 const navItems = [
@@ -11,10 +11,13 @@ const navItems = [
 
 export function Header() {
   const Logo = () => (
-    <div className="relative">
-      <Bot className="w-full h-full" />
-      <Zap className="w-3 h-3 absolute -right-0.5 -top-0.5 text-accent animate-pulse" />
-    </div>
+    <Image
+      src="/LOGO.png"
+      alt="GORETOV Logo"
+      width={32}
+      height={32}
+      className="rounded-lg"
+    />
   );
 
   return (
