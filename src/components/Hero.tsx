@@ -14,11 +14,11 @@ const floatingIcons = [
 ];
 
 const typingWords = [
-  "Telegram-ботов",
+  "Telegram-ботами",
   "Mini Apps",
-  "автоматизации",
-  "интеграции с CRM",
-  "чат-ботов",
+  "автоматизацией",
+  "CRM-интеграцией",
+  "AI-ассистентами",
 ];
 
 function useTypingEffect(words: string[], typingSpeed = 100, deletingSpeed = 50, pauseDuration = 2000) {
