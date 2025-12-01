@@ -162,16 +162,17 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button asChild size="lg" className="w-full sm:w-auto">
+            <Button asChild size="lg" className="w-full sm:w-auto relative overflow-hidden group bg-gradient-to-r from-primary to-primary/80 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
               <Link href="#projects">
-                <Bot className="w-5 h-5 mr-2" />
-                Посмотреть решения
+                <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <Bot className="w-5 h-5 mr-2 relative z-10" />
+                <span className="relative z-10">Посмотреть решения</span>
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto group hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
               <Link href="#contact">
-                <Send className="w-5 h-5 mr-2" />
-                Связаться
+                <Send className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                Бесплатная консультация
               </Link>
             </Button>
           </motion.div>
@@ -186,14 +187,19 @@ export function Hero() {
             {[
               { value: "50+", label: "Проектов" },
               { value: "3+", label: "Года опыта" },
-              { value: "100%", label: "Довольных клиентов" },
+              { value: "98%", label: "Довольных клиентов" },
             ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-primary">
+              <motion.div 
+                key={index} 
+                className="text-center group cursor-default"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:from-accent group-hover:to-primary transition-all duration-500">
                   {stat.value}
                 </div>
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>

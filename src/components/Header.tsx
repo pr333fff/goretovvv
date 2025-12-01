@@ -58,13 +58,17 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+                className="relative text-muted-foreground hover:text-foreground transition-colors font-medium group"
               >
                 {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
-            <Button asChild>
-              <Link href="#contact">Связаться</Link>
+            <Button asChild className="relative overflow-hidden group">
+              <Link href="#contact">
+                <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <span className="relative z-10">Связаться</span>
+              </Link>
             </Button>
           </div>
 

@@ -119,15 +119,22 @@ export function About() {
                 Технологии и навыки
               </h4>
               <div className="flex flex-wrap gap-2">
-                {skills.map(({ name, icon: Icon }) => (
-                  <Badge
+                {skills.map(({ name, icon: Icon }, index) => (
+                  <motion.div
                     key={name}
-                    variant="secondary"
-                    className="px-3 py-1.5 text-sm gap-1.5"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
                   >
-                    <Icon className="w-4 h-4" />
-                    {name}
-                  </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="px-3 py-1.5 text-sm gap-1.5 cursor-default hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300 hover:scale-105"
+                    >
+                      <Icon className="w-4 h-4" />
+                      {name}
+                    </Badge>
+                  </motion.div>
                 ))}
               </div>
             </div>

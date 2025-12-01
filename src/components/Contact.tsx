@@ -187,31 +187,64 @@ export function Contact() {
             className="space-y-6"
           >
             {/* Telegram card */}
-            <Card className="border-primary/50 bg-primary/5">
-              <CardContent className="p-6">
+            <Card className="border-primary/50 bg-gradient-to-br from-primary/10 to-accent/5 relative overflow-hidden group hover:shadow-xl hover:shadow-primary/10 transition-all duration-500">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <CardContent className="p-6 relative">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-full bg-primary text-primary-foreground">
+                  <div className="p-3 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform duration-300">
                     <Send className="w-6 h-6" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-lg mb-1">Telegram</h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      Самый быстрый способ связаться — напишите мне в Telegram
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="font-semibold text-lg">Telegram</h3>
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-500/20 text-green-600 text-xs font-medium">
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                        Online
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground text-sm mb-2">
+                      Самый быстрый способ связаться
                     </p>
-                    <Button asChild>
+                    <p className="text-xs text-muted-foreground mb-4">
+                      ✨ Обычно отвечаю за 15 минут
+                    </p>
+                    <Button asChild className="group/btn relative overflow-hidden">
                       <Link 
                         href="https://t.me/goretov" 
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Send className="w-4 h-4 mr-2" />
-                        Написать в Telegram
+                        <span className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
+                        <Send className="w-4 h-4 mr-2 relative z-10 group-hover/btn:rotate-12 transition-transform duration-300" />
+                        <span className="relative z-10">Написать в Telegram</span>
                       </Link>
                     </Button>
                   </div>
                 </div>
               </CardContent>
             </Card>
+
+            {/* Benefits */}
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { icon: "⚡", text: "Быстрый старт" },
+                { icon: "🛡️", text: "Гарантия 30 дней" },
+                { icon: "💬", text: "Бесплатная консультация" },
+                { icon: "💰", text: "Фиксированная цена" },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + index * 0.1 }}
+                  className="flex items-center gap-2 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+                >
+                  <span className="text-lg">{item.icon}</span>
+                  <span className="text-sm font-medium">{item.text}</span>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
