@@ -15,6 +15,7 @@ export const featuredProjects: FeaturedProjectData[] = [
       "Оплата через Robokassa",
       "Админ-панель с метриками",
     ],
+    previewImage: "/screenshots/mocup1.jpeg",
     screenshots: [
       "/screenshots/proj1.jpeg",
       "/screenshots/proj2.jpeg",
