@@ -230,7 +230,7 @@ interface StepProps {
   children: ReactNode;
 }
 
-export function Step({ children }: StepProps): JSX.Element {
+export function Step({ children }: StepProps) {
   return <div className="stepper-step-default">{children}</div>;
 }
 
