@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Bot, Zap, Send, Github, Mail, Heart } from "lucide-react";
+import { Bot, Zap, Send, Github, Mail, Heart, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const footerLinks = {
   navigation: [
@@ -20,8 +21,30 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-foreground text-background py-12">
-      <div className="container mx-auto px-4">
+    <footer className="bg-foreground text-background">
+      {/* CTA Banner */}
+      <div className="border-b border-background/10">
+        <div className="container mx-auto px-4 py-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                Готовы автоматизировать бизнес?
+              </h3>
+              <p className="text-background/70">
+                Первая консультация бесплатно. Ответ — за 15 минут.
+              </p>
+            </div>
+            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group">
+              <Link href="#contact">
+                Обсудить проект
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>

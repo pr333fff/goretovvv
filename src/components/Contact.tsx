@@ -62,11 +62,15 @@ export function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 text-green-600 text-sm font-medium mb-4">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            Открыт к новым проектам
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Свяжитесь со мной
+            Обсудим ваш проект?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Расскажите о вашем проекте, и я помогу подобрать оптимальное решение
+            Бесплатная консультация — <span className="text-foreground font-medium">расскажу, как автоматизировать именно ваш бизнес</span>
           </p>
         </motion.div>
 

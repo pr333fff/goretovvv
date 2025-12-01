@@ -127,23 +127,24 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
           >
-            <span className="block sm:inline">Создаю </span>
-            <span className="relative inline-block min-w-[200px] sm:min-w-[280px] md:min-w-[340px] text-left sm:text-center">
-              <span className="text-primary">
-                {typedText}
+            <span className="block">Ваш бизнес на автопилоте</span>
+            <span className="block mt-2">
+              <span className="text-muted-foreground">с </span>
+              <span className="relative inline-block min-w-[200px] sm:min-w-[280px] md:min-w-[340px] text-left sm:text-center">
+                <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+                  {typedText}
+                </span>
+                <motion.span
+                  className="inline-block w-[3px] h-[1em] bg-primary ml-1 align-middle"
+                  animate={{ opacity: [1, 0] }}
+                  transition={{
+                    duration: 0.5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                />
               </span>
-              <motion.span
-                className="inline-block w-[3px] h-[1em] bg-primary ml-1 align-middle"
-                animate={{ opacity: [1, 0] }}
-                transition={{
-                  duration: 0.5,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
             </span>
-            <br className="hidden sm:block" />
-            <span className="block mt-2 sm:mt-0">для бизнеса</span>
           </motion.h1>
 
           <motion.p
@@ -152,8 +153,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
           >
-            Помогаю компаниям экономить время и увеличивать продажи с помощью
-            умных ботов, mini-apps и интеграций с CRM
+            <span className="text-foreground font-medium">Освободите 20+ часов в неделю.</span>{" "}
+            Боты принимают заказы, отвечают клиентам и продают — пока вы занимаетесь важным
           </motion.p>
 
           <motion.div
@@ -182,25 +183,45 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-3 gap-8 mt-16 max-w-xl mx-auto"
+            className="grid grid-cols-3 gap-4 md:gap-8 mt-16 max-w-2xl mx-auto"
           >
             {[
-              { value: "50+", label: "Проектов" },
-              { value: "3+", label: "Года опыта" },
-              { value: "98%", label: "Довольных клиентов" },
+              { value: "50+", label: "Проектов", sublabel: "реализовано" },
+              { value: "3+", label: "Года", sublabel: "на рынке" },
+              { value: "24/7", label: "Поддержка", sublabel: "клиентов" },
             ].map((stat, index) => (
               <motion.div 
                 key={index} 
-                className="text-center group cursor-default"
-                whileHover={{ scale: 1.05 }}
+                className="text-center p-4 md:p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 group cursor-default hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
+                whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:from-accent group-hover:to-primary transition-all duration-500">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-sm font-medium text-foreground">{stat.label}</div>
+                <div className="text-xs text-muted-foreground">{stat.sublabel}</div>
               </motion.div>
             ))}
+          </motion.div>
+
+          {/* Trust badges */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-12 flex flex-wrap items-center justify-center gap-6 text-muted-foreground"
+          >
+            <span className="text-sm">Работаю с:</span>
+            <div className="flex items-center gap-4 opacity-60">
+              <span className="font-semibold">Telegram API</span>
+              <span className="w-1 h-1 rounded-full bg-current" />
+              <span className="font-semibold">OpenAI</span>
+              <span className="w-1 h-1 rounded-full bg-current" />
+              <span className="font-semibold">Bitrix24</span>
+              <span className="w-1 h-1 rounded-full bg-current" />
+              <span className="font-semibold">AmoCRM</span>
+            </div>
           </motion.div>
         </div>
       </div>

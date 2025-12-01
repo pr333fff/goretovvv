@@ -36,10 +36,10 @@ export function Projects() {
             Мои проекты
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Работающие боты
+            Боты, которые <span className="text-primary">работают прямо сейчас</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Реальные проекты, которые я разработал и поддерживаю. Можете протестировать прямо сейчас!
+            Можете протестировать — нажмите на карточку и откройте бота
           </p>
         </motion.div>
 
@@ -87,10 +87,10 @@ export function Projects() {
             Портфолио
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Готовые решения
+            Решения под ваши задачи
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Примеры проектов, которые можно адаптировать под ваши задачи
+            Каждый проект можно адаптировать под ваш бизнес за 3-7 дней
           </p>
         </motion.div>
 

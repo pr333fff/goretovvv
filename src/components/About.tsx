@@ -62,9 +62,15 @@ export function About() {
           {...fadeInUp}
           className="text-center mb-12 will-change-transform"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Обо мне</h2>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+            <Zap className="w-4 h-4" />
+            О разработчике
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Почему выбирают меня?
+          </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Разработчик с опытом создания Telegram-решений для бизнеса
+            3+ года превращаю идеи в работающие решения для бизнеса
           </p>
         </motion.div>
 
@@ -98,25 +104,39 @@ export function About() {
             {...fadeInRight}
             className="space-y-6 will-change-transform"
           >
-            <div className="prose prose-gray dark:prose-invert max-w-none">
+            <div className="space-y-4">
               <p className="text-lg leading-relaxed">
-                Привет! Я занимаюсь разработкой Telegram-ботов, mini-apps и автоматизаций 
-                для бизнеса уже более <strong>3 лет</strong>. За это время реализовал 
-                <strong> 50+ проектов</strong> для клиентов из разных сфер: от небольших 
-                кофеен до крупных онлайн-школ.
+                <strong className="text-primary">50+ проектов</strong> для бизнесов от кофеен до онлайн-школ. 
+                Каждый бот — это не просто код, а <strong>инструмент роста</strong> вашего дела.
               </p>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                Моя цель — создавать решения, которые экономят время владельцев бизнеса 
-                и увеличивают их прибыль. Каждый проект — это индивидуальный подход и 
-                внимание к деталям.
-              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { icon: "⚡", title: "Быстрый старт", desc: "MVP за 3-5 дней" },
+                  { icon: "🛡️", title: "Гарантия", desc: "30 дней поддержки" },
+                  { icon: "🔧", title: "Под ключ", desc: "От идеи до запуска" },
+                  { icon: "📈", title: "Результат", desc: "Измеримые метрики" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="p-3 rounded-xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                  >
+                    <span className="text-2xl mb-1 block">{item.icon}</span>
+                    <div className="font-semibold text-sm">{item.title}</div>
+                    <div className="text-xs text-muted-foreground">{item.desc}</div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             {/* Skills */}
             <div>
               <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <Zap className="w-5 h-5 text-primary" />
-                Технологии и навыки
+                <Code2 className="w-5 h-5 text-primary" />
+                Стек технологий
               </h4>
               <div className="flex flex-wrap gap-2">
                 {skills.map(({ name, icon: Icon }, index) => (
