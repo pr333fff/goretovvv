@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, ExternalLink } from "lucide-react";
+import { Briefcase } from "lucide-react";
 import Image from "next/image";
-import { useRef, useState } from "react";
 
 interface PastWork {
   id: string;
@@ -66,32 +65,10 @@ const pastWorks: PastWork[] = [
   },
 ];
 
+// Дублируем массив для бесконечной прокрутки
+const duplicatedWorks = [...pastWorks, ...pastWorks];
+
 export function PastWorks() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setStartX(e.pageX - (scrollRef.current?.offsetLeft || 0));
-    setScrollLeft(scrollRef.current?.scrollLeft || 0);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - (scrollRef.current?.offsetLeft || 0);
-    const walk = (x - startX) * 1.5;
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft = scrollLeft - walk;
-    }
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
   return (
     <div className="relative my-20">
       {/* Header */}
@@ -114,48 +91,26 @@ export function PastWorks() {
         </p>
       </motion.div>
 
-      {/* Scrollable gallery */}
+      {/* Auto-scrolling carousel */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="relative"
+        className="relative overflow-hidden"
       >
         {/* Gradient edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        
-        {/* Scroll hint */}
-        <div className="absolute -top-2 right-4 text-xs text-muted-foreground flex items-center gap-1 z-20">
-          <span>Листайте</span>
-          <ExternalLink className="w-3 h-3 rotate-90" />
-        </div>
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-        {/* Gallery */}
-        <div
-          ref={scrollRef}
-          className={`flex gap-4 overflow-x-auto pb-4 px-4 scrollbar-hide cursor-grab ${isDragging ? 'cursor-grabbing' : ''}`}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          style={{ 
-            scrollbarWidth: 'none', 
-            msOverflowStyle: 'none',
-            WebkitOverflowScrolling: 'touch'
-          }}
-        >
-          {pastWorks.map((work, index) => (
-            <motion.div
-              key={work.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="flex-shrink-0 group"
+        {/* Infinite carousel */}
+        <div className="flex animate-carousel hover:[animation-play-state:paused]">
+          {duplicatedWorks.map((work, index) => (
+            <div
+              key={`${work.id}-${index}`}
+              className="flex-shrink-0 px-2 group"
             >
-              <div className="relative w-[180px] md:w-[200px] aspect-[9/16] rounded-2xl overflow-hidden bg-card border border-border/50 shadow-lg transition-all duration-300 group-hover:border-primary/30 group-hover:shadow-xl group-hover:shadow-primary/10 group-hover:-translate-y-2">
+              <div className="relative w-[160px] md:w-[180px] aspect-[9/16] rounded-2xl overflow-hidden bg-card border border-border/50 shadow-lg transition-all duration-300 group-hover:border-primary/30 group-hover:shadow-xl group-hover:shadow-primary/10 group-hover:-translate-y-2">
                 {/* Image */}
                 <Image
                   src={work.image}
@@ -169,7 +124,7 @@ export function PastWorks() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 {/* Info on hover */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                   <span className="inline-block px-2 py-0.5 text-[10px] font-medium bg-primary/90 text-white rounded-full mb-2">
                     {work.category}
                   </span>
@@ -182,7 +137,7 @@ export function PastWorks() {
                   {work.category}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </motion.div>
@@ -193,21 +148,16 @@ export function PastWorks() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="flex justify-center gap-8 mt-8 text-center"
+        className="flex justify-center items-center gap-6 mt-10 text-center"
       >
-        <div>
-          <div className="text-2xl font-bold text-primary">50+</div>
-          <div className="text-xs text-muted-foreground">выполненных проектов</div>
+        <div className="flex items-center gap-2">
+          <span className="text-2xl font-bold text-primary">30+</span>
+          <span className="text-sm text-muted-foreground">выполненных проектов</span>
         </div>
-        <div className="w-px bg-border" />
-        <div>
-          <div className="text-2xl font-bold text-primary">30+</div>
-          <div className="text-xs text-muted-foreground">довольных клиентов</div>
-        </div>
-        <div className="w-px bg-border" />
-        <div>
-          <div className="text-2xl font-bold text-primary">2 года</div>
-          <div className="text-xs text-muted-foreground">опыта</div>
+        <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+        <div className="flex items-center gap-2">
+          <span className="text-2xl font-bold text-primary">3 года</span>
+          <span className="text-sm text-muted-foreground">опыта</span>
         </div>
       </motion.div>
     </div>
