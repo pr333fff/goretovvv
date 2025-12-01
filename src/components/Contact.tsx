@@ -53,8 +53,14 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-muted/50">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-20 md:py-32 bg-gradient-to-b from-muted/30 via-muted/50 to-muted/30 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,8 +68,11 @@ export function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 text-green-600 text-sm font-medium mb-4">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 text-green-600 text-sm font-medium mb-4 border border-green-500/20 backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
             Открыт к новым проектам
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -191,8 +200,10 @@ export function Contact() {
             className="space-y-6"
           >
             {/* Telegram card */}
-            <Card className="border-primary/50 bg-gradient-to-br from-primary/10 to-accent/5 relative overflow-hidden group hover:shadow-xl hover:shadow-primary/10 transition-all duration-500">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <Card className="border-primary/30 bg-gradient-to-br from-card via-card to-primary/5 relative overflow-hidden group hover:shadow-2xl hover:shadow-primary/15 transition-all duration-700 hover:border-primary/50">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Shine effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.05)_45%,rgba(255,255,255,0.1)_50%,transparent_55%)] bg-[length:200%_100%] group-hover:animate-[shine_1.5s_ease-in-out]" />
               <CardContent className="p-6 relative">
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform duration-300">
@@ -242,9 +253,10 @@ export function Contact() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + index * 0.1 }}
-                  className="flex items-center gap-2 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+                  className="group/benefit flex items-center gap-2 p-3 rounded-xl bg-card/80 backdrop-blur-sm border border-border/30 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
                 >
-                  <span className="text-lg">{item.icon}</span>
+                  <span className="text-lg group-hover/benefit:scale-110 transition-transform duration-300">{item.icon}</span>
                   <span className="text-sm font-medium">{item.text}</span>
                 </motion.div>
               ))}

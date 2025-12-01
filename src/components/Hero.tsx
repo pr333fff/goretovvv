@@ -74,9 +74,27 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+        {/* Animated gradient orbs */}
+        <motion.div 
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            opacity: [0.2, 0.3, 0.2]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1, 1.3, 1],
+            x: [0, -30, 0],
+            opacity: [0.2, 0.35, 0.2]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
         
         {/* Floating icons */}
         {floatingIcons.map(({ Icon, delay, x, y }, index) => (
@@ -115,8 +133,11 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-              <Zap className="w-4 h-4" />
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20 backdrop-blur-sm shadow-lg shadow-primary/5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
               Разработка Telegram-решений
             </span>
           </motion.div>
@@ -192,15 +213,19 @@ export function Hero() {
             ].map((stat, index) => (
               <motion.div 
                 key={index} 
-                className="text-center p-4 md:p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 group cursor-default hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
-                whileHover={{ scale: 1.02, y: -2 }}
+                className="text-center p-4 md:p-6 rounded-2xl bg-card/80 backdrop-blur-md border border-border/50 group cursor-default hover:border-primary/50 transition-all duration-500 relative overflow-hidden"
+                whileHover={{ scale: 1.03, y: -4 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                {/* Hover glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Shine effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0.2)_50%,transparent_55%)] bg-[length:200%_100%] animate-[shine_1.5s_ease-in-out]" />
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent relative z-10">
                   {stat.value}
                 </div>
-                <div className="text-sm font-medium text-foreground">{stat.label}</div>
-                <div className="text-xs text-muted-foreground">{stat.sublabel}</div>
+                <div className="text-sm font-medium text-foreground relative z-10">{stat.label}</div>
+                <div className="text-xs text-muted-foreground relative z-10">{stat.sublabel}</div>
               </motion.div>
             ))}
           </motion.div>

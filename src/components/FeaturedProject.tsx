@@ -46,17 +46,18 @@ export function FeaturedProject({ project, index, onClick }: FeaturedProjectProp
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
+      transition={{ duration: 0.6, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
       className="group cursor-pointer"
       onClick={onClick}
+      whileHover={{ y: -8 }}
     >
-      <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-card to-card/50">
-        {/* Gradient border effect */}
+      <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-card via-card to-card/80 backdrop-blur-sm">
+        {/* Animated gradient border effect */}
         <div 
-          className="absolute inset-0 rounded-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+          className="absolute inset-0 rounded-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"
           style={{ 
             background: project.gradient,
-            padding: '2px',
+            padding: '1.5px',
             mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
             maskComposite: 'xor',
             WebkitMaskComposite: 'xor'
@@ -65,9 +66,12 @@ export function FeaturedProject({ project, index, onClick }: FeaturedProjectProp
         
         {/* Glow effect */}
         <div 
-          className="absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500"
+          className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-40 blur-2xl transition-all duration-700"
           style={{ background: project.gradient }}
         />
+        
+        {/* Shine effect */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.08)_45%,rgba(255,255,255,0.15)_50%,transparent_55%)] bg-[length:200%_100%] group-hover:animate-[shine_1.5s_ease-in-out]" />
         
         <div className="relative p-6 md:p-8">
           {/* Header */}
@@ -112,10 +116,10 @@ export function FeaturedProject({ project, index, onClick }: FeaturedProjectProp
 
           {/* Stats */}
           {project.stats && (
-            <div className="grid grid-cols-3 gap-4 mb-6 p-4 rounded-lg bg-muted/30">
+            <div className="grid grid-cols-3 gap-4 mb-6 p-4 rounded-xl bg-gradient-to-br from-muted/50 to-muted/30 backdrop-blur-sm border border-border/30">
               {project.stats.users && (
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 text-lg font-bold text-primary">
+                <div className="text-center group/stat">
+                  <div className="flex items-center justify-center gap-1 text-lg font-bold text-primary group-hover/stat:scale-110 transition-transform">
                     <Users className="w-4 h-4" />
                     {project.stats.users}
                   </div>
@@ -123,8 +127,8 @@ export function FeaturedProject({ project, index, onClick }: FeaturedProjectProp
                 </div>
               )}
               {project.stats.messages && (
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 text-lg font-bold text-primary">
+                <div className="text-center group/stat">
+                  <div className="flex items-center justify-center gap-1 text-lg font-bold text-primary group-hover/stat:scale-110 transition-transform">
                     <MessageSquare className="w-4 h-4" />
                     {project.stats.messages}
                   </div>
@@ -132,8 +136,8 @@ export function FeaturedProject({ project, index, onClick }: FeaturedProjectProp
                 </div>
               )}
               {project.stats.rating && (
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 text-lg font-bold text-amber-500">
+                <div className="text-center group/stat">
+                  <div className="flex items-center justify-center gap-1 text-lg font-bold text-amber-500 group-hover/stat:scale-110 transition-transform">
                     <Star className="w-4 h-4 fill-amber-500" />
                     {project.stats.rating}
                   </div>

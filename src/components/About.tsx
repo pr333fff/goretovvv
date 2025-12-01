@@ -122,11 +122,15 @@ export function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="p-3 rounded-xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                    className="group relative p-4 rounded-xl bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-500 overflow-hidden"
+                    whileHover={{ y: -2 }}
                   >
-                    <span className="text-2xl mb-1 block">{item.icon}</span>
-                    <div className="font-semibold text-sm">{item.title}</div>
-                    <div className="text-xs text-muted-foreground">{item.desc}</div>
+                    {/* Background gradient on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    {/* Content */}
+                    <span className="text-2xl mb-2 block relative z-10 group-hover:scale-110 transition-transform duration-300 inline-block">{item.icon}</span>
+                    <div className="font-semibold text-sm relative z-10">{item.title}</div>
+                    <div className="text-xs text-muted-foreground relative z-10">{item.desc}</div>
                   </motion.div>
                 ))}
               </div>
@@ -149,7 +153,7 @@ export function About() {
                   >
                     <Badge
                       variant="secondary"
-                      className="px-3 py-1.5 text-sm gap-1.5 cursor-default hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300 hover:scale-105"
+                      className="px-3 py-1.5 text-sm gap-1.5 cursor-default hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300 hover:scale-105 backdrop-blur-sm border-border/60 hover:shadow-lg hover:shadow-primary/10"
                     >
                       <Icon className="w-4 h-4" />
                       {name}
