@@ -10,7 +10,12 @@ import {
   Server,
   Database,
   Sparkles,
-  Link
+  Link,
+  Rocket,
+  Shield,
+  Wrench,
+  TrendingUp,
+  type LucideIcon
 } from "lucide-react";
 import ProfileCard from "@/components/ProfileCard";
 
@@ -111,10 +116,10 @@ export function About() {
               </p>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { icon: "⚡", title: "Быстрый старт", desc: "MVP за 3-5 дней" },
-                  { icon: "🛡️", title: "Гарантия", desc: "30 дней поддержки" },
-                  { icon: "🔧", title: "Под ключ", desc: "От идеи до запуска" },
-                  { icon: "📈", title: "Результат", desc: "Измеримые метрики" },
+                  { Icon: Rocket, title: "Быстрый старт", desc: "MVP за 3-5 дней", color: "text-amber-500" },
+                  { Icon: Shield, title: "Гарантия", desc: "30 дней поддержки", color: "text-green-500" },
+                  { Icon: Wrench, title: "Под ключ", desc: "От идеи до запуска", color: "text-primary" },
+                  { Icon: TrendingUp, title: "Результат", desc: "Измеримые метрики", color: "text-accent" },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
@@ -128,7 +133,9 @@ export function About() {
                     {/* Background gradient on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     {/* Content */}
-                    <span className="text-2xl mb-2 block relative z-10 group-hover:scale-110 transition-transform duration-300 inline-block">{item.icon}</span>
+                    <div className={`w-10 h-10 rounded-lg bg-gradient-to-br from-background to-muted flex items-center justify-center mb-2 relative z-10 group-hover:scale-110 transition-transform duration-300 border border-border/50 ${item.color}`}>
+                      <item.Icon className="w-5 h-5" />
+                    </div>
                     <div className="font-semibold text-sm relative z-10">{item.title}</div>
                     <div className="text-xs text-muted-foreground relative z-10">{item.desc}</div>
                   </motion.div>

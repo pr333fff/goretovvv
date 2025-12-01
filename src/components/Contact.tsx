@@ -11,7 +11,12 @@ import {
   Phone,
   CheckCircle2,
   User,
-  Wallet
+  Wallet,
+  Rocket,
+  Shield,
+  Sparkles,
+  BadgeCheck,
+  Clock
 } from "lucide-react";
 import Link from "next/link";
 import Stepper, { Step } from "./Stepper";
@@ -220,8 +225,9 @@ export function Contact() {
                     <p className="text-muted-foreground text-sm mb-2">
                       Самый быстрый способ связаться
                     </p>
-                    <p className="text-xs text-muted-foreground mb-4">
-                      ✨ Обычно отвечаю за 15 минут
+                    <p className="text-xs text-muted-foreground mb-4 flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-primary" />
+                      Обычно отвечаю за 15 минут
                     </p>
                     <Button asChild className="group/btn relative overflow-hidden">
                       <Link 
@@ -242,10 +248,10 @@ export function Contact() {
             {/* Benefits */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { icon: "⚡", text: "Быстрый старт" },
-                { icon: "🛡️", text: "Гарантия 30 дней" },
-                { icon: "💬", text: "Бесплатная консультация" },
-                { icon: "💰", text: "Фиксированная цена" },
+                { Icon: Rocket, text: "Быстрый старт", color: "text-amber-500 bg-amber-500/10" },
+                { Icon: Shield, text: "Гарантия 30 дней", color: "text-green-500 bg-green-500/10" },
+                { Icon: MessageCircle, text: "Бесплатная консультация", color: "text-primary bg-primary/10" },
+                { Icon: BadgeCheck, text: "Фиксированная цена", color: "text-accent bg-accent/10" },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -253,10 +259,12 @@ export function Contact() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + index * 0.1 }}
-                  className="group/benefit flex items-center gap-2 p-3 rounded-xl bg-card/80 backdrop-blur-sm border border-border/30 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
+                  className="group/benefit flex items-center gap-3 p-3 rounded-xl bg-card/80 backdrop-blur-sm border border-border/30 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <span className="text-lg group-hover/benefit:scale-110 transition-transform duration-300">{item.icon}</span>
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center group-hover/benefit:scale-110 transition-transform duration-300 ${item.color}`}>
+                    <item.Icon className="w-4 h-4" />
+                  </div>
                   <span className="text-sm font-medium">{item.text}</span>
                 </motion.div>
               ))}
