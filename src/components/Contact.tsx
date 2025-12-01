@@ -16,7 +16,8 @@ import {
   Shield,
   Sparkles,
   BadgeCheck,
-  Clock
+  Clock,
+  ClipboardList
 } from "lucide-react";
 import Link from "next/link";
 import Stepper, { Step } from "./Stepper";
@@ -95,7 +96,19 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative"
           >
+            {/* Form header */}
+            <div className="mb-4 flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
+                <ClipboardList className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">Оставить заявку</h3>
+                <p className="text-sm text-muted-foreground">Заполните форму за 30 секунд</p>
+              </div>
+            </div>
+            
             {isCompleted ? (
               <div className="stepper-outer-container">
                 <div className="stepper-circle-container">

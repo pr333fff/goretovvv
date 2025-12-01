@@ -9,25 +9,34 @@
 .stepper-circle-container {
   width: 100%;
   max-width: 28rem;
-  border-radius: 1.75rem;
-  background: hsl(var(--card) / 0.9);
+  border-radius: 1.25rem;
+  background: hsl(var(--card));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid hsl(var(--border) / 0.5);
+  border: 2px solid hsl(var(--primary) / 0.3);
   box-shadow: 
-    0 20px 50px -12px rgba(0, 0, 0, 0.15),
+    0 25px 50px -12px hsl(var(--primary) / 0.15),
     0 0 0 1px hsl(var(--border) / 0.1),
-    inset 0 1px 0 hsl(255 255 255 / 0.1);
+    inset 0 1px 0 hsl(255 255 255 / 0.05);
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.stepper-circle-container:hover {
+  border-color: hsl(var(--primary) / 0.5);
+  box-shadow: 
+    0 25px 60px -12px hsl(var(--primary) / 0.2),
+    0 0 0 1px hsl(var(--border) / 0.1),
+    inset 0 1px 0 hsl(255 255 255 / 0.05);
 }
 
 .stepper-indicator-row {
   display: flex;
   width: 100%;
   align-items: center;
-  padding: 1.5rem 2rem;
-  background: hsl(var(--muted) / 0.3);
-  border-bottom: 1px solid hsl(var(--border) / 0.5);
+  padding: 1.25rem 1.75rem;
+  background: hsl(var(--primary) / 0.05);
+  border-bottom: 1px solid hsl(var(--primary) / 0.15);
 }
 
 .stepper-content-default {
@@ -36,19 +45,19 @@
 }
 
 .stepper-step-default {
-  padding: 2rem;
+  padding: 1.75rem 2rem 2rem;
 }
 
 .stepper-step-default h2 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.375rem;
   color: hsl(var(--foreground));
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .stepper-step-default p {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   color: hsl(var(--muted-foreground));
   margin-bottom: 1.5rem;
   line-height: 1.5;
@@ -58,14 +67,14 @@
 .stepper-step-default select {
   width: 100%;
   padding: 1rem 1.25rem;
-  border-radius: 1rem;
+  border-radius: 0.875rem;
   border: 2px solid hsl(var(--border) / 0.7);
-  background: hsl(var(--background));
+  background: hsl(var(--muted) / 0.3);
   color: hsl(var(--foreground));
   font-size: 1rem;
   outline: none;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  font-weight: 450;
+  font-weight: 500;
 }
 
 .stepper-step-default input:hover,
@@ -84,14 +93,14 @@
 }
 
 .stepper-step-default input::placeholder {
-  color: hsl(var(--muted-foreground) / 0.7);
+  color: hsl(var(--muted-foreground) / 0.6);
   font-weight: 400;
 }
 
 .stepper-footer-container {
   padding: 1.25rem 2rem 1.5rem;
-  background: hsl(var(--muted) / 0.2);
-  border-top: 1px solid hsl(var(--border) / 0.5);
+  background: hsl(var(--primary) / 0.03);
+  border-top: 1px solid hsl(var(--primary) / 0.1);
 }
 
 .stepper-footer-nav {
@@ -109,19 +118,19 @@
 .stepper-back-button {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 0.75rem;
-  padding: 0.625rem 1.25rem;
+  padding: 0.75rem 1.5rem;
   color: hsl(var(--muted-foreground));
   cursor: pointer;
   background: transparent;
-  border: 1px solid transparent;
-  font-size: 0.875rem;
+  border: 1px solid hsl(var(--border));
+  font-size: 0.9rem;
   font-weight: 500;
 }
 
 .stepper-back-button:hover {
   color: hsl(var(--foreground));
-  background: hsl(var(--muted) / 0.8);
-  border-color: hsl(var(--border));
+  background: hsl(var(--muted) / 0.5);
+  border-color: hsl(var(--foreground) / 0.2);
 }
 
 .stepper-back-button.inactive {
@@ -134,17 +143,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   border-radius: 0.75rem;
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.85) 100%);
+  background: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
   font-weight: 600;
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 2rem;
   cursor: pointer;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   box-shadow: 
-    0 2px 8px hsl(var(--primary) / 0.25),
-    inset 0 1px 0 hsl(255 255 255 / 0.15);
+    0 4px 14px hsl(var(--primary) / 0.35);
   position: relative;
   overflow: hidden;
 }
@@ -153,7 +162,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, transparent 0%, hsl(255 255 255 / 0.1) 50%, transparent 100%);
+  background: linear-gradient(135deg, transparent 0%, hsl(255 255 255 / 0.15) 50%, transparent 100%);
   transform: translateX(-100%);
   transition: transform 0.5s ease;
 }
@@ -182,42 +191,49 @@
 }
 
 .stepper-indicator:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .stepper-indicator-inner {
   display: flex;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.75rem;
+  width: 2.75rem;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
 }
 
 .stepper-active-dot {
-  height: 0.5rem;
-  width: 0.5rem;
+  height: 0.625rem;
+  width: 0.625rem;
   border-radius: 9999px;
   background-color: #fff;
-  box-shadow: 0 0 8px hsl(255 255 255 / 0.5);
+  box-shadow: 0 0 12px hsl(255 255 255 / 0.6);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
 }
 
 .stepper-step-number {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .stepper-connector {
   position: relative;
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-  height: 3px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  height: 4px;
   flex: 1;
   overflow: hidden;
   border-radius: 9999px;
-  background-color: hsl(var(--border) / 0.5);
+  background-color: hsl(var(--border) / 0.4);
 }
 
 .stepper-connector-inner {
@@ -226,11 +242,12 @@
   top: 0;
   height: 100%;
   border-radius: 9999px;
+  background: hsl(var(--primary));
 }
 
 .stepper-check-icon {
-  height: 1rem;
-  width: 1rem;
+  height: 1.125rem;
+  width: 1.125rem;
   color: #fff;
 }
 
