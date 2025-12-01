@@ -18,6 +18,7 @@ import {
   type LucideIcon
 } from "lucide-react";
 import ProfileCard from "@/components/ProfileCard";
+import DecryptedText from "@/components/ui/DecryptedText";
 
 const skills = [
   { name: "TypeScript", icon: Code2 },
@@ -72,7 +73,15 @@ export function About() {
             О разработчике
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Почему выбирают меня?
+            <DecryptedText 
+              text="Почему выбирают меня?"
+              animateOn="view"
+              speed={40}
+              maxIterations={15}
+              revealDirection="center"
+              className="text-foreground"
+              encryptedClassName="text-primary/60"
+            />
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             3+ года превращаю идеи в работающие решения для бизнеса
