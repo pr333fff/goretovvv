@@ -14,8 +14,8 @@ export function Header() {
     <Image
       src="/LOGO.png"
       alt="GORETOV Logo"
-      width={48}
-      height={48}
+      width={40}
+      height={40}
       className="rounded-xl"
     />
   );

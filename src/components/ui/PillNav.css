@@ -52,7 +52,7 @@
   height: var(--nav-h);
   border-radius: 50%;
   background: var(--base, #1E293B);
-  padding: 10px;
+  padding: 4px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -67,10 +67,13 @@
   transform: scale(1.05);
 }
 
-.pill-logo svg {
+.pill-logo svg,
+.pill-logo img {
   width: 100%;
   height: 100%;
   color: var(--pill-bg, #3B82F6);
+  object-fit: contain;
+  border-radius: 8px;
 }
 
 .pill-list {

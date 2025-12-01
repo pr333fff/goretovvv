@@ -49,12 +49,12 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-3 mb-4">
+            <Link href="/" className="flex items-center gap-4 mb-4">
               <Image
                 src="/LOGO.png"
                 alt="GORETOV Logo"
-                width={56}
-                height={56}
+                width={64}
+                height={64}
                 className="rounded-xl"
               />
               <span className="font-bold text-xl">GORETOV</span>
