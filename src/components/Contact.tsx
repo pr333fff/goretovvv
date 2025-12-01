@@ -212,50 +212,6 @@ export function Contact() {
                 </div>
               </CardContent>
             </Card>
-
-            {/* Info cards */}
-            <div className="grid gap-4">
-              <Card>
-                <CardContent className="p-4 flex items-center gap-4">
-                  <div className="p-2 rounded-lg bg-muted">
-                    <Mail className="w-5 h-5 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Email</p>
-                    <p className="font-medium">hello@goretov.dev</p>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardContent className="p-4 flex items-center gap-4">
-                  <div className="p-2 rounded-lg bg-muted">
-                    <MessageCircle className="w-5 h-5 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Отвечаю</p>
-                    <p className="font-medium">В течение 2-3 часов</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Working hours */}
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="font-semibold mb-3">График работы</h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Пн — Пт</span>
-                    <span>10:00 — 20:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Сб — Вс</span>
-                    <span>По договорённости</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </motion.div>
         </div>
       </div>
