@@ -36,10 +36,10 @@ export function Projects() {
             Мои проекты
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Боты, которые <span className="text-primary">работают</span>
+            Собственные <span className="text-primary">разработки</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Можете протестировать — нажмите на карточку и откройте бота
+            Pet-проекты, в которые вложил душу — можете потестить прямо сейчас
           </p>
         </motion.div>
 
