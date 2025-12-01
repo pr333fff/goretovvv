@@ -53,9 +53,9 @@ export function Footer() {
               <Image
                 src="/LOGO.png"
                 alt="GORETOV Logo"
-                width={40}
-                height={40}
-                className="rounded-lg"
+                width={56}
+                height={56}
+                className="rounded-xl"
               />
               <span className="font-bold text-xl">GORETOV</span>
             </Link>
