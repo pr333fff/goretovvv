@@ -8,6 +8,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectModal } from "@/components/ProjectModal";
 import { FeaturedProject, FeaturedProjectData } from "@/components/FeaturedProject";
 import { FeaturedProjectModal } from "@/components/FeaturedProjectModal";
+import { PastWorks } from "@/components/PastWorks";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Rocket } from "lucide-react";
 
@@ -61,6 +62,9 @@ export function Projects() {
           isOpen={!!selectedFeaturedProject}
           onClose={() => setSelectedFeaturedProject(null)}
         />
+
+        {/* Past Works Gallery */}
+        <PastWorks />
 
         {/* Divider */}
         <div className="relative my-20">
