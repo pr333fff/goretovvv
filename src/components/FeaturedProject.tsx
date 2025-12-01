@@ -5,22 +5,23 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
-  ExternalLink, 
   Users, 
   MessageSquare, 
   Star,
   Sparkles,
   Bot,
-  LucideIcon
+  LucideIcon,
+  ArrowRight
 } from "lucide-react";
-import Link from "next/link";
 
 export interface FeaturedProjectData {
   id: string;
   title: string;
   description: string;
+  fullDescription?: string;
   features: string[];
   telegramUrl: string;
+  screenshots?: string[];
   stats?: {
     users?: string;
     messages?: string;
@@ -34,9 +35,10 @@ export interface FeaturedProjectData {
 interface FeaturedProjectProps {
   project: FeaturedProjectData;
   index: number;
+  onClick?: () => void;
 }
 
-export function FeaturedProject({ project, index }: FeaturedProjectProps) {
+export function FeaturedProject({ project, index, onClick }: FeaturedProjectProps) {
   const IconComponent = project.icon || Bot;
   
   return (
@@ -45,7 +47,8 @@ export function FeaturedProject({ project, index }: FeaturedProjectProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="group"
+      className="group cursor-pointer"
+      onClick={onClick}
     >
       <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-card to-card/50">
         {/* Gradient border effect */}
@@ -142,23 +145,16 @@ export function FeaturedProject({ project, index }: FeaturedProjectProps) {
 
           {/* CTA */}
           <Button 
-            asChild 
-            className="w-full group/btn relative overflow-hidden"
+            className="w-full group/btn relative overflow-hidden text-white"
             style={{ 
-              background: project.gradient,
+              background: `linear-gradient(135deg, ${project.gradient})`,
             }}
           >
-            <Link 
-              href={project.telegramUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              <span className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
-              <span className="relative z-10 flex items-center gap-2">
-                Попробовать бота
-                <ExternalLink className="w-4 h-4" />
-              </span>
-            </Link>
+            <span className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
+            <span className="relative z-10 flex items-center gap-2">
+              Подробнее
+              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+            </span>
           </Button>
         </div>
       </Card>

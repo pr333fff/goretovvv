@@ -6,13 +6,15 @@ import { projects, categories, Project } from "@/data/projects";
 import { featuredProjects } from "@/data/featuredProjects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectModal } from "@/components/ProjectModal";
-import { FeaturedProject } from "@/components/FeaturedProject";
+import { FeaturedProject, FeaturedProjectData } from "@/components/FeaturedProject";
+import { FeaturedProjectModal } from "@/components/FeaturedProjectModal";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Rocket } from "lucide-react";
 
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedFeaturedProject, setSelectedFeaturedProject] = useState<FeaturedProjectData | null>(null);
 
   const filteredProjects = activeCategory === "all"
     ? projects
@@ -44,9 +46,21 @@ export function Projects() {
         {/* Featured Projects Grid */}
         <div className="grid md:grid-cols-2 gap-6 mb-20 max-w-4xl mx-auto">
           {featuredProjects.map((project, index) => (
-            <FeaturedProject key={project.id} project={project} index={index} />
+            <FeaturedProject 
+              key={project.id} 
+              project={project} 
+              index={index}
+              onClick={() => setSelectedFeaturedProject(project)}
+            />
           ))}
         </div>
+
+        {/* Featured Project Modal */}
+        <FeaturedProjectModal
+          project={selectedFeaturedProject}
+          isOpen={!!selectedFeaturedProject}
+          onClose={() => setSelectedFeaturedProject(null)}
+        />
 
         {/* Divider */}
         <div className="relative my-16">
