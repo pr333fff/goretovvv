@@ -77,11 +77,11 @@ export function About() {
               status="Доступен для проектов"
               contactText="Связаться"
               avatarUrl="/avatar.jpg"
-              showUserInfo={true}
+              showUserInfo={false}
               enableTilt={true}
               enableMobileTilt={false}
+              behindGlowEnabled={false}
               onContactClick={handleContactClick}
-              behindGlowColor="rgba(59, 130, 246, 0.4)"
               innerGradient="linear-gradient(145deg, rgba(59, 130, 246, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%)"
             />
           </motion.div>
