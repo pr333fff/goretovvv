@@ -15,6 +15,10 @@ import {
   Shield,
   Wrench,
   TrendingUp,
+  Clock,
+  HeadphonesIcon,
+  Target,
+  Cpu,
   type LucideIcon
 } from "lucide-react";
 import ProfileCard from "@/components/ProfileCard";
@@ -28,6 +32,41 @@ const skills = [
   { name: "API интеграции", icon: Link },
   { name: "PostgreSQL", icon: Database },
   { name: "Автоматизации", icon: Workflow },
+];
+
+const advantages = [
+  { 
+    Icon: Rocket, 
+    title: "Быстрый старт", 
+    value: "3-5",
+    unit: "дней",
+    desc: "MVP готов к запуску",
+    gradient: "from-amber-500 to-orange-500"
+  },
+  { 
+    Icon: Shield, 
+    title: "Гарантия", 
+    value: "30",
+    unit: "дней",
+    desc: "Бесплатная поддержка",
+    gradient: "from-green-500 to-emerald-500"
+  },
+  { 
+    Icon: HeadphonesIcon, 
+    title: "Связь", 
+    value: "24/7",
+    unit: "",
+    desc: "На связи в Telegram",
+    gradient: "from-blue-500 to-cyan-500"
+  },
+  { 
+    Icon: Target, 
+    title: "Точность", 
+    value: "100",
+    unit: "%",
+    desc: "Довольных клиентов",
+    gradient: "from-violet-500 to-purple-500"
+  },
 ];
 
 // Оптимизированные варианты анимаций для GPU-ускорения
@@ -61,22 +100,81 @@ export function About() {
   };
 
   return (
-    <section id="about" className="py-20 md:py-32 bg-muted/50 overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-24 md:py-40 bg-muted/30 overflow-hidden relative">
+      {/* Background decorations */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           {...fadeInUp}
-          className="text-center mb-12 will-change-transform"
+          className="text-center mb-16 will-change-transform"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4 border border-primary/20 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 border border-primary/20 backdrop-blur-sm">
             <Zap className="w-4 h-4" />
             О разработчике
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="gradient-text-blue">Почему выбирают меня?</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg md:text-xl">
             3+ года превращаю идеи в работающие решения для бизнеса
           </p>
+        </motion.div>
+
+        {/* Advantages Grid - NEW DESIGN */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-20 max-w-5xl mx-auto"
+        >
+          {advantages.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group relative p-6 md:p-8 rounded-2xl bg-card/80 backdrop-blur-md border border-border/50 hover:border-transparent transition-all duration-500 overflow-hidden"
+            >
+              {/* Gradient border on hover */}
+              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-[1px]`}>
+                <div className="w-full h-full rounded-2xl bg-card" />
+              </div>
+              
+              {/* Glow effect */}
+              <div className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
+              
+              {/* Content */}
+              <div className="relative z-10">
+                {/* Icon */}
+                <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}>
+                  <item.Icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                </div>
+                
+                {/* Value */}
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>
+                    {item.value}
+                  </span>
+                  {item.unit && (
+                    <span className="text-lg md:text-xl font-semibold text-muted-foreground">
+                      {item.unit}
+                    </span>
+                  )}
+                </div>
+                
+                {/* Title & Description */}
+                <div className="font-semibold text-foreground mb-1">{item.title}</div>
+                <div className="text-sm text-muted-foreground">{item.desc}</div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
@@ -107,37 +205,31 @@ export function About() {
           {/* Description and skills */}
           <motion.div
             {...fadeInRight}
-            className="space-y-6 will-change-transform"
+            className="space-y-8 will-change-transform"
           >
-            <div className="space-y-4">
-              <p className="text-lg leading-relaxed">
-                <strong className="text-primary">50+ проектов</strong> для бизнесов от кофеен до онлайн-школ. 
-                Каждый бот — это не просто код, а <strong>инструмент роста</strong> вашего дела.
+            <div className="space-y-6">
+              <p className="text-xl leading-relaxed">
+                <span className="gradient-text font-semibold">50+ проектов</span> для бизнесов от кофеен до онлайн-школ. 
+                Каждый бот — это не просто код, а <strong className="text-foreground">инструмент роста</strong> вашего дела.
               </p>
-              <div className="grid grid-cols-2 gap-3">
+              
+              {/* Process steps */}
+              <div className="space-y-3">
                 {[
-                  { Icon: Rocket, title: "Быстрый старт", desc: "MVP за 3-5 дней", color: "text-amber-500" },
-                  { Icon: Shield, title: "Гарантия", desc: "30 дней поддержки", color: "text-green-500" },
-                  { Icon: Wrench, title: "Под ключ", desc: "От идеи до запуска", color: "text-primary" },
-                  { Icon: TrendingUp, title: "Результат", desc: "Измеримые метрики", color: "text-accent" },
-                ].map((item, i) => (
+                  { num: "01", text: "Обсуждаем задачу и составляем ТЗ" },
+                  { num: "02", text: "Разрабатываю MVP за 3-5 дней" },
+                  { num: "03", text: "Тестируем, дорабатываем, запускаем" },
+                ].map((step, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="group relative p-4 rounded-xl bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-500 overflow-hidden"
-                    whileHover={{ y: -2 }}
+                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-card/50 transition-colors"
                   >
-                    {/* Background gradient on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    {/* Content */}
-                    <div className={`w-10 h-10 rounded-lg bg-gradient-to-br from-background to-muted flex items-center justify-center mb-2 relative z-10 group-hover:scale-110 transition-transform duration-300 border border-border/50 ${item.color}`}>
-                      <item.Icon className="w-5 h-5" />
-                    </div>
-                    <div className="font-semibold text-sm relative z-10">{item.title}</div>
-                    <div className="text-xs text-muted-foreground relative z-10">{item.desc}</div>
+                    <span className="text-2xl font-bold gradient-text-blue">{step.num}</span>
+                    <span className="text-muted-foreground">{step.text}</span>
                   </motion.div>
                 ))}
               </div>
@@ -145,8 +237,8 @@ export function About() {
 
             {/* Skills */}
             <div>
-              <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <Code2 className="w-5 h-5 text-primary" />
+              <h4 className="font-semibold mb-4 flex items-center gap-2 text-lg">
+                <Cpu className="w-5 h-5 text-primary" />
                 Стек технологий
               </h4>
               <div className="flex flex-wrap gap-2">
@@ -160,7 +252,7 @@ export function About() {
                   >
                     <Badge
                       variant="secondary"
-                      className="px-3 py-1.5 text-sm gap-1.5 cursor-default hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300 hover:scale-105 backdrop-blur-sm border-border/60 hover:shadow-lg hover:shadow-primary/10"
+                      className="px-3 py-2 text-sm gap-2 cursor-default hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300 hover:scale-105 backdrop-blur-sm border-border/60 hover:shadow-lg hover:shadow-primary/10"
                     >
                       <Icon className="w-4 h-4" />
                       {name}
