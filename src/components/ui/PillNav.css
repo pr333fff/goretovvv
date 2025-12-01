@@ -174,7 +174,15 @@
   }
 
   .mobile-only {
-    display: block;
+    display: flex;
+  }
+  
+  .pill-logo {
+    display: none;
+  }
+  
+  .pill-nav {
+    justify-content: flex-end;
   }
 }
 
